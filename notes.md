@@ -7,10 +7,10 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | User activity                                       | Frontend component | Backend endpoints | Database SQL |
 | --------------------------------------------------- | ------------------ | ----------------- | ------------ |
 | View home page                                      |     home.tsx       |     none          |  none        |
-| Register new user<br/>(t@jwt.com, pw: test)         |     register.tsx      | \[Put\] /api/auth |  INSERT INTO user (name,email, password) VALUES (?, ?, ?) INSERT INTO userRole (userId, role, objectId) VALUES (?, ?, ?)        |
-| Login new user<br/>(t@jwt.com, pw: test)            |                    |                   |              |
-| Order pizza                                         |                    |                   |              |
-| Verify pizza                                        |                    |                   |              |
+| Register new user<br/>(t@jwt.com, pw: test)         |     register.tsx   | \[Post\] /api/auth |  INSERT INTO user (name,email, password) VALUES (?, ?, ?) <br/> INSERT INTO userRole (userId, role, objectId) VALUES (?, ?, ?)   |
+| Login new user<br/>(t@jwt.com, pw: test)            |     login.tsx      | \[Put\] /api/auth  |  SELECT * FROM user WHERE email=? <br/> SELECT * FROM userRole WHERE userId=? <br/> INSERT INTO auth (token, userId) VALUES (?, ?)            |
+| Order pizza                                         |  menu.tsx <br/> payment.tsx <br/> delivery.tsx                  |    \[Get\] /api/order/menu <br/>  \[Post\] /api/order  <br/> \[Post\] FactoryURL + /api/order            |   SELECT * FROM menu <br/> INSERT INTO dinerOrder (dinerId, franchiseId, storeId, date) VALUES (?, ?, ?, now()) <br/> INSERT INTO orderItem (orderId, menuId, description, price) VALUES (?, ?, ?, ?)         |
+| Verify pizza                                        |      delivery.txt              |  \[Post\]   factoryURL + /api/order/verify              |    none          |
 | View profile page                                   |                    |                   |              |
 | View franchise<br/>(as diner)                       |                    |                   |              |
 | Logout                                              |                    |                   |              |
